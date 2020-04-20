@@ -1,0 +1,78 @@
+body {
+  width: 1200px;
+  height: 1000px;
+  background-image: linear-gradient(to right, rgb(172, 170, 170), white, gray);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+main {
+  width: 898px;
+  height: 337px;
+  margin-top: 50px;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: left;
+}
+
+.arrow-button {
+  width: 5%;
+  background-color: lightgray;
+}
+
+.arrow-button:hover {
+  background-color: whitesmoke;
+}
+
+#main-picture-container {
+  width: 90%;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+#photo {
+  width: 100%;
+}
+
+.arrow-l {
+  background-image: url(./images/arrow-L.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.arrow-r {
+  background-image: url(./images/arrow-R.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.gray-container {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  position: relative;
+  padding-left: 10px;
+  padding-right: 10px;
+  top: 336px;
+  user-select: none;
+}
+
+h1 {
+  color: white;
+  text-shadow: 2px 2px black;
+  font-family: cursive;
+  font-size: medium;
+}
+
+p {
+  color: gray;
+  text-shadow: 2px 2px black;
+  font-family: cursive;
+  font-size: small;
+}
