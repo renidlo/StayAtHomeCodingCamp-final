@@ -1,6 +1,5 @@
 body {
   width: 1200px;
-  height: 1000px;
   background-image: linear-gradient(to right, rgb(172, 170, 170), white, gray);
   display: flex;
   flex-direction: column;
@@ -168,3 +167,12 @@ footer {
   background-repeat: no-repeat;
   background-size: 100%;
 }
+
+#reference {
+  color: gray;
+  text-shadow: none;
+  font-family: cursive;
+  font-size: xx-small;
+  margin-left: auto;
+  margin-right: 100px;
+  margin-top: 20px;
