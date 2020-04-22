@@ -117,11 +117,11 @@ $(".box").click((event) => {
   // now numberIndex is a number
   if (numberIndex != highlightedThumbnail) {
     displayPhoto(imagesData[numberIndex]);
-    var clickedBox = `[data-index="` + indexClicked + `"]`;
+    var clickedBox = `[data-index="` + numberIndex + `"]`;
     $(clickedBox).css("border", "3px solid orange");
     var previousBox = `[data-index="` + highlightedThumbnail + `"]`;
     $(previousBox).css("border", "3px solid gray");
-    highlightedThumbnail = indexClicked;
+    highlightedThumbnail = numberIndex;
   }
 });
 
