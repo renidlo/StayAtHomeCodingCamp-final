@@ -49,31 +49,104 @@ var imagesData = [
 ];
 
 // first picture as default
-var currentPhoto = 0;
-displayPhoto(imagesData[currentPhoto]);
+var highlightedThumbnail = 0;
+displayPhoto(imagesData[highlightedThumbnail]);
 
 //user clicked on the left arrow
 $(".arrow-l").click(function () {
-  currentPhoto = currentPhoto - 1;
-  if (currentPhoto === -1) {
-    currentPhoto = 7;
+  var previousBox = `[data-index="` + highlightedThumbnail + `"]`;
+  $(previousBox).css("border", "3px solid gray");
+
+  highlightedThumbnail = highlightedThumbnail - 1;
+  if (highlightedThumbnail === -1) {
+    highlightedThumbnail = 7;
   }
-  displayPhoto(imagesData[currentPhoto]);
+  displayPhoto(imagesData[highlightedThumbnail]);
+  var clickedBox = `[data-index="` + highlightedThumbnail + `"]`;
+  $(clickedBox).css("border", "3px solid orange");
 });
 
 //user clicked on the right arrow
 $(".arrow-r").click(function () {
-  currentPhoto = currentPhoto + 1;
-  if (currentPhoto === 8) {
-    currentPhoto = 0;
+  var previousBox = `[data-index="` + highlightedThumbnail + `"]`;
+  $(previousBox).css("border", "3px solid gray");
+
+  highlightedThumbnail = highlightedThumbnail + 1;
+  if (highlightedThumbnail === 8) {
+    highlightedThumbnail = 0;
   }
-  displayPhoto(imagesData[currentPhoto]);
+  displayPhoto(imagesData[highlightedThumbnail]);
+  var clickedBox = `[data-index="` + highlightedThumbnail + `"]`;
+  $(clickedBox).css("border", "3px solid orange");
 });
 
 // function for displaying main picture
 function displayPhoto(element) {
-  console.log(currentPhoto);
   $("#photo").attr("src", element.photo);
+  $("#photo").attr("alt", element.title);
   $("#photo-title").text(element.title);
   $("#photo-description").text(element.description);
 }
+
+// function for displaying thumbnail
+function displayThumbnail(element, ind) {
+  var xxx = `[data-index="` + ind + `"]`;
+  $(xxx).css("background-image", `url(` + element.photo + `)`);
+}
+
+// create thumbnails
+imagesData.forEach((item, index) => {
+  $("#thumbnails").append(`<div class="box" data-index="${index}"></div>`);
+  $(`[data-index="` + index + `"]`).append(
+    `<div class="hint" data-hint="${index}"></div>`
+  );
+  $(`[data-hint="` + index + `"]`).text(item.title);
+  displayThumbnail(item, index);
+});
+
+// first thumbnail as default
+var highlightedThumbnail = 0;
+$(`[data-index="0"]`).css("border", "3px solid orange");
+
+// thumbnail is clicked
+$(".box").click((event) => {
+  let indexClicked = $(event.target).attr("data-index");
+  // indexClicked is now a string! if you need it as a number you have to change it
+  // because for example "1" + 1 is going to be "11" and not 2
+  let numberIndex = parseInt(indexClicked);
+  // now numberIndex is a number
+  if (numberIndex != highlightedThumbnail) {
+    displayPhoto(imagesData[numberIndex]);
+    var clickedBox = `[data-index="` + indexClicked + `"]`;
+    $(clickedBox).css("border", "3px solid orange");
+    var previousBox = `[data-index="` + highlightedThumbnail + `"]`;
+    $(previousBox).css("border", "3px solid gray");
+    highlightedThumbnail = indexClicked;
+  }
+});
+
+// small left arrow is clicked
+$(".small-arrow-l").click((event) => {
+  var previousBox = `[data-index="` + highlightedThumbnail + `"]`;
+  $(previousBox).css("border", "3px solid gray");
+  highlightedThumbnail = highlightedThumbnail - 1;
+  if (highlightedThumbnail === -1) {
+    highlightedThumbnail = 7;
+  }
+  displayPhoto(imagesData[highlightedThumbnail]);
+  var clickedBox = `[data-index="` + highlightedThumbnail + `"]`;
+  $(clickedBox).css("border", "3px solid orange");
+});
+
+// small right arrow is clicked
+$(".small-arrow-r").click((event) => {
+  var previousBox = `[data-index="` + highlightedThumbnail + `"]`;
+  $(previousBox).css("border", "3px solid gray");
+  highlightedThumbnail = highlightedThumbnail + 1;
+  if (highlightedThumbnail === 8) {
+    highlightedThumbnail = 0;
+  }
+  displayPhoto(imagesData[highlightedThumbnail]);
+  var clickedBox = `[data-index="` + highlightedThumbnail + `"]`;
+  $(clickedBox).css("border", "3px solid orange");
+});
